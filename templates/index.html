@@ -1,0 +1,135 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+    <div class="col-md-6 p-lg-5 mx-auto my-5 mt-1">
+      <h2 class="d-flex justify-content-center pb-2 text-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
+          <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z"/>
+          <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/>
+          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567"/>
+        </svg>
+      </h2>
+      <h1 class="display-3 fw-bold bg-warning text-white">Expense Tracker</h1>
+      <h3 class="fw-normal text-muted mb-3">Take control of your finances effortlessly with our intuitive expense tracker, designed to simplify your budget management and empower your financial journey.</h3>
+      <div class="d-flex gap-3 justify-content-center">
+      {% if not current_user.is_authenticated: %}
+        <a href="/login" class="btn btn-lg btn-warning">Login</a>
+        <a href="/signup" class="btn btn-lg btn-outline-warning">SignUp</a>
+      {% else: %}
+        <a href="/dashboard" class="btn btn-lg btn-warning">Dashboard</a>
+      {% endif %}
+
+      </div>
+    </div>
+    <hr>
+    {% if not current_user.is_authenticated: %}
+    <div class="row mt-5 pt-5">
+      <div class="col-lg-4 d-flex flex-column align-items-center">
+        <div class="rounded-circle border shadow d-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#20c997" class="bi bi-bullseye" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
+            <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+          </svg>
+        </div>
+        <h2 class="fw-bold" style="color: #198754">Goal</h2>
+        <p class="text-center">Set your goal, save towards it, and watch your dreams become reality</p>
+      </div>
+      <div class="col-lg-4 d-flex flex-column align-items-center">
+        <div class="rounded-circle border shadow d-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#20c997" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </div>
+        <h2 class="fw-bold" style="color: #198754">Analytics</h2>
+        <p class="text-center">Track your spending habits with analytics to understand where your money goes</p>
+      </div>
+      <div class="col-lg-4 d-flex flex-column align-items-center">
+        <div class="rounded-circle border shadow d-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#20c997" class="bi bi-feather" viewBox="0 0 16 16">
+            <path d="M15.807.531c-.174-.177-.41-.289-.64-.363a3.8 3.8 0 0 0-.833-.15c-.62-.049-1.394 0-2.252.175C10.365.545 8.264 1.415 6.315 3.1S3.147 6.824 2.557 8.523c-.294.847-.44 1.634-.429 2.268.005.316.05.62.154.88q.025.061.056.122A68 68 0 0 0 .08 15.198a.53.53 0 0 0 .157.72.504.504 0 0 0 .705-.16 68 68 0 0 1 2.158-3.26c.285.141.616.195.958.182.513-.02 1.098-.188 1.723-.49 1.25-.605 2.744-1.787 4.303-3.642l1.518-1.55a.53.53 0 0 0 0-.739l-.729-.744 1.311.209a.5.5 0 0 0 .443-.15l.663-.684c.663-.68 1.292-1.325 1.763-1.892.314-.378.585-.752.754-1.107.163-.345.278-.773.112-1.188a.5.5 0 0 0-.112-.172M3.733 11.62C5.385 9.374 7.24 7.215 9.309 5.394l1.21 1.234-1.171 1.196-.027.03c-1.5 1.789-2.891 2.867-3.977 3.393-.544.263-.99.378-1.324.39a1.3 1.3 0 0 1-.287-.018Zm6.769-7.22c1.31-1.028 2.7-1.914 4.172-2.6a7 7 0 0 1-.4.523c-.442.533-1.028 1.134-1.681 1.804l-.51.524zm3.346-3.357C9.594 3.147 6.045 6.8 3.149 10.678c.007-.464.121-1.086.37-1.806.533-1.535 1.65-3.415 3.455-4.976 1.807-1.561 3.746-2.36 5.31-2.68a8 8 0 0 1 1.564-.173"/>
+          </svg>
+        </div>
+        <h2 class="fw-bold" style="color: #198754">Tracking</h2>
+        <p class="text-center">Simplify your budget management with effortless expense input.</p>
+      </div>
+    </div>
+    {% else: %}
+    <div class="container col-xl-11 col-xxl-9 px-4 py-5">
+      <div class="row align-items-center justify-content-between g-lg-5 pb-3 pt-5">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Log Expense</h1>
+          <p class="col-lg-11 fs-4">Document your expenses seamlessly by noting the date, detailing the expense, and categorizing it for easy tracking and analysis</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-6">
+          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary shadow" action="{{ url_for('home') }}" method="post">
+            <div class="form-floating mb-3 row">
+              <div class="dropdown col">
+                <button id="Category" class="btn me-4 btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" value="">Category</button>
+                <input name="category" id="iCategory" hidden="hidden" value="" required>
+                <ul class="dropdown-menu">
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Food')">Food</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Transport')">Transport</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Entertainment')">Entertainment</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Monthly Bill')">Monthly Bill</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Shopping')">Shopping</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Utilities')">Utilities</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', 'Others')">Others</button></li>
+                  <li><button type="button" class="dropdown-item btn btn-light" onclick="change('Category', '', 'Category')">None</button></li>
+                </ul>
+              </div>
+              <div class="col">
+                <input name="date" id="date" class="p-2 me-2 rounded border border-warning" type="date" placeholder="Date" onchange="change('end', this.value)" value="" required>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input autocomplete="off" name="description" type="text" class="form-control mb-2" id="floatingDesc" placeholder="Description" required>
+              <label for="floatingDesc">Description</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="amount" autocomplete="off" id="amount" class="form-control dropdown-toggle" type="number" data-bs-toggle="dropdown" aria-expanded="false" value="" placeholder="Amount" >
+              <label for="amount" id="iamount">Amount</label>
+              <ul class="dropdown-menu px-1">
+                <li class="mb-2 px-2">Amount of the Expenditure</li>
+                <li><input type="range" class="form-control form-range border shadow-sm" value="" min="0" max="100000" step="500" oninput="change('amount', this.value)"></li>
+              </ul>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-warning" type="submit">Log Expense</button>
+          </form>
+        </div>
+      </div>
+    </div>
+<hr>
+    <div class="container col-xl-11 col-xxl-9 px-4 py-5">
+      <div class="row align-items-center justify-content-between g-lg-5 pb-5">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Set Monthly Budget</h1>
+          <p class="col-lg-11 fs-4">Document your expenses seamlessly by noting the date, detailing the expense, and categorizing it for easy tracking and analysis</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-6">
+          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary shadow" action="{{ url_for('set_month_budget') }}" method="post">
+            <div class="form-floating mb-3">
+              <input name="budget" autocomplete="off" id="budget" class="form-control dropdown-toggle" type="number" data-bs-toggle="dropdown" aria-expanded="false" value="" placeholder="Amount" >
+              <label for="budget" id="ibudget">Monthly Budget</label>
+              <ul class="dropdown-menu px-1">
+                <li class="mb-2 px-2">Set Your Monthly Budget</li>
+                <li><input type="range" class="form-control form-range border shadow-sm" value="" min="0" max="1000000" step="10000" oninput="change('budget', this.value)"></li>
+              </ul>
+            </div>
+            <button class="w-100 btn btn-lg btn-danger" type="submit">Set Budget</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</main>
+{% include 'footer.html' %}
+{% endblock %}

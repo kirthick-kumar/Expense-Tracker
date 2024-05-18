@@ -1,0 +1,84 @@
+{% extends 'header.html' %}
+{% block content %}
+  <div class="p-3 p-md-5 mx-0 text-center shadow rounded mb-5">
+    <div class="col-md-6 mx-auto">
+      <h5 class="display-5 fw-bold text-light bg-warning p-1 rounded">Analytics</h5>
+      <h4 class="fw-normal text-muted mb-3">Experience a sophisticated financial overview through our analytics, harmonizing dynamic graphs with comprehensive summary reports for a deeper understanding of your fiscal landscape.</h4>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+
+  <div class="mt-5 row mx-auto container">
+    <div class="col ms-2">
+      <img src="static/images/monthly.png" width="560" height="350" class="ms-5 px-5 border shadow rounded">
+    </div>
+    <div class="col">
+      <img src="static/images/yearly.png" width="520" height="350" class="ms-5 px-5 border shadow rounded">
+    </div>
+  </div>
+  <div class="my-5 row mx-auto container">
+    <div class="col ms-2">
+      <img src="static/images/category.png" width="560" height="350" class="ms-5 px-5 border shadow rounded">
+    </div>
+    <div class="col">
+      <img src="static/images/monthly_category.png" width="560" height="350" class="ms-5 px-5 border shadow rounded">
+    </div>
+  </div>
+
+  <div class="table-responsive container shadow-lg mb-5 pt-3 border rounded">
+    <table class="table table-bordered table-hover table caption-top table-striped">
+      <caption class="text-bg-warning ps-2 rounded-top h4 fw-bold">Analytics</caption>
+      <tr>
+        <td class="ps-3">Current Month Total Expenditure</td>
+        <td class="ps-5">₹{{ cur_month }}</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Last Month Total Expenditure</td>
+        <td class="ps-5">₹{{ last_month }}</td>
+      </tr>
+      <tr>
+        <td class="ps-3">This Month vs Last Month Comparison</td>
+        {% if last_month > 0 %}
+          {% set comp = (((cur_month-last_month)/last_month)*100)|round(2) %}
+          {% if comp > 0 %}
+            <td class="ps-5 text-danger fw-bold table-danger">{{ comp }}% More than last month</td>
+          {% else %}
+            <td class="ps-5 text-success fw-bold table-success">{{ comp }}% Less than last month</td>
+          {% endif %}
+        {% else %}
+          <td class="ps-5">No Data for Last Month</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td class="ps-3">Average Expense</td>
+        <td class="ps-5">₹{{ avg_expense|round(2) }}</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Monthly Expense Average</td>
+        <td class="ps-5">₹{{ monthly_avg_expense|round(2) }}</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Biggest Category Expense</td>
+        <td class="ps-5">₹{{ biggest_category[-1:][0] }} ({{ biggest_category[0].category }})</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Smallest Category Expense</td>
+        <td class="ps-5">₹{{ smallest_category[-1:][0] }} ({{ smallest_category[0].category }})</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Biggest Expense</td>
+        <td class="ps-5">₹{{ biggest_expense.amount }} ({{ biggest_expense.description }})</td>
+      </tr>
+      <tr>
+        <td class="ps-3">Smallest Expense</td>
+        <td class="ps-5">₹{{ smallest_expense.amount }} ({{ smallest_expense.description }})</td>
+      </tr>
+      <tr class="table-warning">
+        <td class="ps-3 fw-bold">Total Expenditure</td>
+        <td class="ps-5 fw-bold">₹{{ user.total_expense }}</td>
+      </tr>
+    </table>
+  </div>
+{% include 'footer.html' %}
+{% endblock %}

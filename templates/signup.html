@@ -1,0 +1,54 @@
+{% extends 'header.html' %}
+{% block content %}
+<body style="background-image: url('static/images/signup.png')">
+  <section class="my-5 pt-5" id="signup" >
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-xl-7">
+          <div class="border shadow-lg text-black " style="border-radius: 25px;">
+            <div class="p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-xl-8 order-2 order-lg-1">
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Signup</p>
+                  {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <p style="color: red" class="ms-4 ps-3">{{ messages[0] }}</p>
+                    {% endif %}
+                  {% endwith %}
+                  <form id="signupForm" class="mx-1 mx-md-4" data-sb-form-api-token="API_TOKEN" action="{{ url_for('signup') }}" method="post">
+                    <div class="d-flex flex-row align-items-center ms-3 mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="email">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" autocomplete="off" required/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center ms-3 mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" autocomplete="off"  required/>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center ms-3 mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" minlength="8" required/>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="ms-3 mb-5">Already have an account? <a href="/login" class="text-warning -50 fw-bold">Login</a></p>
+                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+{% include 'footer.html' %}
+{% endblock %}
